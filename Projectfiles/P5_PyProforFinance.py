@@ -6,67 +6,36 @@
 import os
 import os.path as path
 # Resource file export
-#ResourceDir =  path.abspath(path.join(__file__ ,"../..")) # It doesn't work so far.
-#ResourceDir = path.abspath(path.join(os.getcwd(),"../..")) # To go two directories,
-#ResourceDir = path.abspath(path.join(os.getcwd(),"../"))    # To go one directory back.
+# ResourceDir =  path.abspath(path.join(__file__ ,"../..")) # It doesn't work so far.
+# ResourceDir = path.abspath(path.join(os.getcwd(),"../..")) # To go two directories,
+# ResourceDir = path.abspath(path.join(os.getcwd(),"../"))    # To go one directory back.
 ResourceDir = os.getcwd()
 # https://stackoverflow.com/questions/27844088/python-get-directory-two-levels-up
 # -----------------------------------------------------
 # Installing packages -
 # -----------------------------------------------------
-import datetime as dt
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from matplotlib import style
-import pandas as pd
-import pandas_datareader.data as web # This package replaced an old one
-# packages for P4
-# -----------------------------------------------------
-# from matplotlib.finance import candlestick_ohlc
-from mpl_finance import candlestick_ohlc
-import matplotlib.dates as mdates
-# Added later due to warning for future consideration.
-from pandas.plotting import register_matplotlib_converters
-register_matplotlib_converters()
-# -----------------------------------------------------
-style.use('ggplot')
-#start = dt.datetime(2000,1,1)
-#end = dt.datetime(2016,12,31)
-# -----------------------------------------------------
-# You will need to run this one in the begging to pull the TSLA data
-# df = web.DataReader('TSLA','yahoo',start,end)
+# Exporting Direcotry : ResourceDir+ '/resources/
+import bs4 as bs
+import pickle
+import requests
 
-# print(df.head())
-# # print(ResourceDir)
-# df.to_csv(ResourceDir+'/resources/tsla.csv')
+# Les get the data from the wikipedia from the link of all companies and search for a specific table
+# You have to use the (Show inspection element of the html source file to know from where to start)
 
-# -----------------------------------------------------
-df = pd.read_csv(ResourceDir+ '/resources/tsla.csv', parse_dates = True, index_col = 0)
+def save_sp500_tickers():
+    resp    = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+    soup    = bs.BeautifulSoup(resp.text,features="lxml") # Now you store the website .html file as a .txt file
+    table   = soup.find('table', {'class': 'wikitable sortable'})
+    tickers = []
+    for row in table.findAll('tr')[1:]: # tr: table row for your current table
+        ticker = row.findAll('td')[0].text # getting the zero-column where the name of companies are.(colum name: Ticker symbol), also as this is a soup object we convert it to a text.count
+        tickers.append(ticker)
+    # Now we will save the file we created as an pickle object to not request from the website everytime
+    with open("sp500tickers.pickle","wb") as f:
+        pickle.dump(tickers,f)
 
-# -----------------------------------------------------
-# starting with re-sampling
-# You can make it weekly or monthly e.g. 'Min'..etc
-# Here we will do every 10 days take the mean,
-# Open high low close also can do which we will work on it now, it will shrink our data.
+    print(tickers)
+    return tickers
 
-df_ohlc = df['Adj Close'].resample('10D').ohlc()
-df_volume = df['Volume'].resample('10D').sum()
+save_sp500_tickers()
 
-print(df_ohlc)
-df_ohlc.reset_index(inplace = True)
-print(df_ohlc)
-df_ohlc['Date'] = df_ohlc['Date'].map(mdates.date2num)
-
-print(df_ohlc)
-# -----------------------------------------------------
-
-# -----------------------------------------------------
-ax1 = plt.subplot2grid((6,1),(0,0), rowspan= 5, colspan= 1)
-ax2 = plt.subplot2grid((6,1),(5,0), rowspan= 1, colspan= 1, sharex = ax1)
-
-ax1.xaxis_date()
-candlestick_ohlc(ax1,df_ohlc.values,width=2, colorup = 'g') # Green up the color
-ax2.fill_between(df_volume.index.map(mdates.date2num), df_volume.values, 0)
-
-plt.show()
