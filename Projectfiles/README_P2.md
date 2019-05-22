@@ -67,4 +67,4 @@ Date
 
 # Inspiration
 
-https://pythonprogramming.net/getting-stock-prices-python-programming-for-finance/
+https://pythonprogramming.net/handling-stock-data-graphing-python-programming-for-finance/
