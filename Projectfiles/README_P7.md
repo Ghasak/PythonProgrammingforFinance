@@ -1,5 +1,5 @@
-# Getting all company pricing data in the S&P 500
-## - Python Programming for Finance p.6
+# Combining the S&P 500 Data
+## - Python Programming for Finance p.7
 
 Hello and welcome to part 7 of the Python for Finance tutorial series. In the previous tutorial, we grabbed the Yahoo Finance data for the entire S&P 500 of companies. In this tutorial, we're going to bring this data together into one DataFrame.
 
