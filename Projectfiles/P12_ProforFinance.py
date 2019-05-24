@@ -32,7 +32,10 @@ import numpy as np
 import pickle
 from collections import Counter
 
-
+# -----------------------------------------------------
+import sklearn
+from sklearn import svm,  model_selection, neighbors  # before model_selection was cross_validation
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier
 # Les get the data from the wikipedia from the link of all companies and search for a specific table
 # You have to use the (Show inspection element of the html source file to know from where to start)
 
@@ -196,7 +199,7 @@ def process_data_for_labels(ticker):
 
 def buy_sell_hold(*args):       # passing any number of args to our function
     cols = [c for c in args]
-    requirement  = 0.02
+    requirement  = 0.028
     for col in cols:
         if col > requirement:
             return 1
@@ -237,8 +240,38 @@ def extract_featuresets(ticker):
 
     return X, y, df
 
+#extract_featuresets('XOM')
+# -----------------------------------------------------
+def do_ml(ticker):
+    X,y,df = extract_featuresets(ticker)
+
+    X_train, X_test,y_train, y_test = model_selection.train_test_split(X,y, test_size = 0.25)
+
+    # clf = neighbors.KNeighborsClassifier()
+    clf = VotingClassifier([('lsvc', svm.LinearSVC()),
+                            ('knn',neighbors.KNeighborsClassifier()),
+                            ('rfor',RandomForestClassifier(n_estimators=100))])
+
+    clf.fit(X_train, y_train)
+
+    confidence = clf.score(X_test, y_test)
+    print('Accuracy =', confidence)
+
+    predictions = clf.predict(X_test)
+
+    print('Predicted Spread', Counter(predictions))
+
+    return confidence
 
 
-extract_featuresets('XOM')
+
+do_ml('BAC')
+
+
+print('sklearn: %s' % sklearn.__version__)
+
+
+
+
 
 
