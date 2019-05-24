@@ -29,6 +29,8 @@ from matplotlib import style
 style.use('ggplot')
 
 import numpy as np
+import pickle
+
 
 
 # Les get the data from the wikipedia from the link of all companies and search for a specific table
@@ -167,4 +169,23 @@ def visualize_data():
     plt.show()
 
 
-visualize_data()
+# visualize_data()
+
+# -----------------------------------------------------
+# Starting with P.9 with Processing data for Machine Learning - Python Programming for Finance
+
+def process_data_for_labels(ticker):
+    hm_days = 7  # doese the price goes up or down
+    df = pd.read_csv(ResourceDir+"/resources/sp500_joined_closes.csv", index_col= 0)
+    tickers = df.columns.values.tolist()
+    print(tickers)
+    df.fillna(0,inplace = True)
+
+    for i in range(1, hm_days+1):
+        df['{}_{}d'.format(ticker,i)] = (df[ticker].shift(-i) - df[ticker])/ df[ticker]
+
+    df.fillna(0, inplace = True)
+    return tickers, df
+
+
+process_data_for_labels('XOM')

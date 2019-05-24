@@ -16,8 +16,11 @@ Also you through VSCODE:
 We have here worked on the **visualization**, now we can work on correlation and looking on mean. The values of the
 
 # Problem
+In the original code there was a problem at the following function and it has been altered.
 
-
+```
+heatmap = ax.pcolor(data, cmap = "RdYlGn") # Before it was: plt.cm.RdYlGn
+```
 # Inspiration
 
 https://pythonprogramming.net/stock-price-correlation-table-python-programming-for-finance/
