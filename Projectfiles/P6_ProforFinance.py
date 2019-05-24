@@ -63,24 +63,25 @@ def get_data_from_yahoo(reload_sp500 = False):
 
     start   = dt.datetime(2001,1,1)
     end     = dt.datetime(2016,12,31)
-    counter = 1
+    #counter = 1
 
-    non_valid_company = ["BDX","BBT","CF","COST","DOW","EVRG","HIG", "COTY", "LIN", "OKE","JNJ","PNW","PPG","DGX","VMC","ZBH"]
-    for ticker in tickers:
-        print(counter,ticker)
+    non_valid_company = ["BDX","BBT","CF","COST","DOW","EVRG","EW","HIG", "COTY", "LIN", "OKE","JNJ","PNW","PPG","DGX","VMC","ZBH"]
+    tickers_len = len(tickers)-1
+    for index,ticker in enumerate(tickers):
+        print(index,ticker)
         #print("\n")
         #os.system('clear')
         if ticker in non_valid_company:
             continue
         else:
             if not os.path.exists(ResourceDir+"/resources/stock_dfs/{}.csv".format(ticker)):
-                counter = counter+1
+                #counter = counter+1
                 df = web.DataReader(ticker, 'yahoo', start, end)
                 df.to_csv(ResourceDir+"/resources/stock_dfs/{}.csv".format(ticker))
             else:
                 print('Already have {}'.format(ticker))
 
-        if counter == len(tickers):
+        if index == tickers_len:
             print("All companies are finished")
 
 
