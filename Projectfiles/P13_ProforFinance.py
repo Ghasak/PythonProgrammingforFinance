@@ -265,11 +265,12 @@ def do_ml(ticker):
 
 
 
-do_ml('BAC')
+# do_ml('BAC')
 
 
-print('sklearn: %s' % sklearn.__version__)
+# print('sklearn: %s' % sklearn.__version__)
 
+# -----------------------------------------------------
 
 
 
