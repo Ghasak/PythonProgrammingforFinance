@@ -53,4 +53,39 @@ def See_the_dataset():
 
 ```
 ## P04_ Percent Change: Machine Learning for Automated Trading in Forex and Stocks Part 4
+Mainly an explanation on using the stock data and how to get the percentage of changing over open and closing price data. Added only the percentChange function.
+
+## P05_ Finding Patterns: Machine Learning for Automated Trading in Forex and Stocks Part 5
+There is a function called reduce which is basically works as following
+
+```py
+def do_sum(x1, x2): return x1 + x2
+
+def my_reduce(func, seq):
+     first = seq[0]
+     for i in seq[1:]:
+         first = func(first, i)
+     return first
+
+
+print(my_reduce(do_sum, [1, 2, 3, 4]))
+
+```
+The results are:
+
+```v
+10
+```
+if you use the one from python then you can do
+
+```py
+from functools import reduce
+def do_sum(x1, x2):
+    return x1 + x2
+
+print(reduce(do_sum, [1, 2, 3, 4]))
+```
+* [HINT] read more here: https://www.python-course.eu/lambda.php
+* or here: https://medium.com/better-programming/lambda-map-and-filter-in-python-4935f248593
+
 
