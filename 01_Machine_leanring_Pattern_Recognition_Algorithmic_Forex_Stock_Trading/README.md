@@ -1,5 +1,18 @@
 # MACHINE LEARNING WITH FINANCE:
 Machine leanring with finance - pattern recognition for algorithmic Forex and Stock Trading
+
+# Running from Ipython
+
+```c
+%run M01_Machine_learning_pattern_recognition_algorithms/P05_Finding_Patterns.py
+```
+# Running from VS-Code
+Command + Shift + R, lunch the code . in the parent directory where you have the virtualenv directory.
+
+# Running from Terminal
+```c
+python M01_Machine_learning_pattern_recognition_algorithms/P05_Finding_Patterns.py
+```
 ## P01- Intro
 We will use the machine learning analysis and trading algorithm.
 Our data is organized as:
