@@ -1,6 +1,6 @@
 """
     Machine learning with finance - Pattern Recognition for
-        Algorithmic Forex and Stock Trading: Intro
+        Algorithmic Forex and Stock Trading: Quick look at our Data: Machine learning for Stocks and Forex Technical Analysis
 """
 
 import os
@@ -44,9 +44,42 @@ def graphRaxFx():
     plt.show()
 
 
+class session_info():
+
+    def __init__(self, your_string):
+        self.your_string = your_string
+
+
+    def Initial_run(self):
+        from datetime import date
+        from datetime import datetime
+        today = datetime.now() #date.today()
+        a = len(self.your_string)
+        print(a*"=")
+        print(self.your_string)
+        b = len("Today's date:"+str(today))
+        print(b*"-")
+        print("Today's date:", today)
+        print(a*"=")
+
+    def Finishing_run(self):
+        from datetime import date
+        from datetime import datetime
+        today = datetime.now() #date.today()
+        a = len(self.your_string)
+        print(a*"=")
+        print(self.your_string)
+        b = len("Finished run at:"+str(today))
+        print(b*"-")
+        print("Finished run at:", today)
+        print(a*"=")
 
 
 if __name__ == "__main__":
-    # Quick look at our Data: Machine learning for Stocks and Forex Technical Analysis
+    output1 = session_info("Quick look at our Data: Machine learning for Stocks and Forex Technical Analysis")
+    output1.Initial_run()
     graphRaxFx()
+    output1.Finishing_run()
+
+
 
