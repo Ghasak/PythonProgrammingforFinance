@@ -33,10 +33,6 @@ date,bid,ask = np.loadtxt(os.path.join(DATA_LOCATION,"GBPUSD1d.txt"),
 patternAr     = []
 performanceAr = []
 
-
-
-
-
 def percentChange(startPoint, currentPoint):
     # Import either the division or using float such as (float()) this part of python
     return ((float(currentPoint)-startPoint)/abs(startPoint))*100
@@ -160,6 +156,7 @@ class session_info():
         Tx = datetime.now() #date.today()
 
         TPassed = Tx - session_info.T0
+        print("\n")
         print(self.len_string*"=")
         print(self.your_string)
         print(self.len_string*"=")
@@ -174,14 +171,47 @@ def See_the_dataset():
         print(Table[0][index],"\t",Table[1][index],"\t",Table[2][index])
 
 
+
+
+messagex = "This is the sentence that I want to make it in two lines"
+
+def MyString(messagex):
+    lenString = len(messagex)
+    messageList = list(messagex)
+    messagewords = messagex.split()
+    # print(lenString)
+    # print(messageList)
+    # print(messagewords)
+    # Define your boundary
+    boundary = 50
+    l = 0
+    i = 0
+    
+
+
+
+
+
+MyString(messagex)
+
+
+
+
+
+
+
+
+
 # Starting point for our Python Script
 if __name__ == "__main__":
     output1 = session_info(message)
     output1.Initial_run()
     #graphRaxFx()
     #patternFinder()
-    patternStorage()
+    #patternStorage()
+
     output1.Finishing_run()
+
 
 
 
