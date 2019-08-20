@@ -36,3 +36,21 @@ Use time.strptime or dateutil.parser.parse or datestr2num instead
 More are here: https://www.reddit.com/r/learnpython/comments/3o2f36/following_sentdex_in_python_3/
 
 ## P03_ Machine Learning and Pattern Recognition for Stocks and Forex Part 3
+
+This one we have tweaked the axises and added some other features on top of Part 4. Also I have added a function to see the data as:
+
+```py
+
+def See_the_dataset():
+    date,bid,ask = np.loadtxt(os.path.join(DATA_LOCATION,"GBPUSD1d.txt"),
+                                                          unpack= True,
+                                                          delimiter= ',',
+                                                          converters={0:convert_date})
+    Table = (date,bid,ask) # converted to a tuple
+    for index in range(len(Table[0][:])):
+        print(Table[0][index],"\t",Table[1][index],"\t",Table[2][index])
+
+
+```
+## P04_ Percent Change: Machine Learning for Automated Trading in Forex and Stocks Part 4
+
