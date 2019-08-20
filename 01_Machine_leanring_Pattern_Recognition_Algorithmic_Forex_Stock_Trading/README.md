@@ -9,7 +9,7 @@ First column is date which is formated as:
 ex: 2013 05 01 00 00 00
 ```
 
-### Modification:
+## P02- Quick look at the data
 Adding the following function
 
 ```py
@@ -35,3 +35,4 @@ Use time.strptime or dateutil.parser.parse or datestr2num instead
 ```
 More are here: https://www.reddit.com/r/learnpython/comments/3o2f36/following_sentdex_in_python_3/
 
+## P03_ Machine Learning and Pattern Recognition for Stocks and Forex Part 3
