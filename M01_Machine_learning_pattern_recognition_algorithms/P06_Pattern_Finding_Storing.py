@@ -39,7 +39,7 @@ performanceAr = []
 
 def percentChange(startPoint, currentPoint):
     # Import either the division or using float such as (float()) this part of python
-    return (float(currentPoint - startPoint) / abs(startPoint)) * 100
+    return ((float(currentPoint)-startPoint)/abs(startPoint))*100
 
 
 
@@ -50,6 +50,7 @@ def patternStorage():
 
     y = 11 # starting point, ignore the first point
     while y < x:
+        pattern = []
         # for every point along the way, the starting point stay the same
         p1  = percentChange(avgLine[y-10],avgLine[y-9])
         # We will chaneg only the end time
@@ -74,18 +75,27 @@ def patternStorage():
 
         futureOutcome = percentChange(currentPoint, averageOutcome)
 
+        pattern.append(p1)
+        pattern.append(p2)
+        pattern.append(p3)
+        pattern.append(p4)
+        pattern.append(p5)
+        pattern.append(p6)
+        pattern.append(p7)
+        pattern.append(p8)
+        pattern.append(p9)
+        pattern.append(p10)
 
-
-
-
-
-
-        print(currentPoint)
-        print('-----------')
-        print(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
+        # Now we will add our global arrays
+        patternAr.append(pattern)
+        performanceAr.append(futureOutcome)
         y += 1
-        #time.sleep(1)
-    PatEndTime = time.time()
+        print(f"Iteration No.{y}")
+    patEndTime = time.time()
+    print(f"The length of patternAr     = {len(patternAr)}")
+    print(f"The length of performanceAr = {len(performanceAr)}")
+    print(f"Pattern storage took:{patEndTime-patStartTime} second")
+
 
 
 def graphRaxFx():
