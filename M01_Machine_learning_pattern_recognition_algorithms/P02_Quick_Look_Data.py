@@ -45,34 +45,38 @@ def graphRaxFx():
 
 
 class session_info():
+    from datetime import date
+    from datetime import datetime
+    T0 = datetime.now()
 
     def __init__(self, your_string):
         self.your_string = your_string
-
+        self.len_string  = len(your_string)
+        self.len_string_adding = len("Today's date:"+str(session_info.T0))
 
     def Initial_run(self):
-        from datetime import date
-        from datetime import datetime
-        today = datetime.now() #date.today()
-        a = len(self.your_string)
-        print(a*"=")
+
+        self.len_string = len(self.your_string)
+        print(self.len_string*"=")
         print(self.your_string)
-        b = len("Today's date:"+str(today))
-        print(b*"-")
-        print("Today's date:", today)
-        print(a*"=")
+        print(self.len_string*"=")
+        print(self.len_string_adding*"-")
+        print("Today's date:", session_info.T0.strftime("%d/%m/%Y %H:%M:%S"))
+        print(self.len_string_adding*"-")
+
 
     def Finishing_run(self):
-        from datetime import date
         from datetime import datetime
-        today = datetime.now() #date.today()
-        a = len(self.your_string)
-        print(a*"=")
+        Tx = datetime.now() #date.today()
+
+        TPassed = Tx - session_info.T0
+        print(self.len_string*"=")
         print(self.your_string)
-        b = len("Finished run at:"+str(today))
-        print(b*"-")
-        print("Finished run at:", today)
-        print(a*"=")
+        print(self.len_string*"=")
+        print("Starting  time at = {}".format(self.T0.strftime("%d/%m/%Y %H:%M:%S")))
+        print("Executing time at = {}".format(Tx.strftime("%d/%m/%Y %H:%M:%S")))
+        print(f"[Done] exited with code = 0 in {TPassed} seconds")
+
 
 
 if __name__ == "__main__":
