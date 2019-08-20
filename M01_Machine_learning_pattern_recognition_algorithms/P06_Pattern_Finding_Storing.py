@@ -1,7 +1,8 @@
 """
     Machine learning with finance - Pattern Recognition for
-        Algorithmic Forex and Stock Trading: Finding Patterns: Machine Learning for Automated Trading in Forex and Stocks Part 5
+        Algorithmic Forex and Stock Trading: Finding Patterns: Pattern Finding and Storing:
 """
+message = "Pattern Finding and Storing: Machine Learning for Algorithmic Trading in Forex and Stocks Part 6"
 
 import os
 import sys
@@ -12,6 +13,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import matplotlib.dates  as mdates
+from functools import reduce # This one for the reduce function.
 
 #print(os.getcwd())
 "/Desktop/My_DATA_MP/Learning/04_PythonforFinance"
@@ -27,14 +29,22 @@ date,bid,ask = np.loadtxt(os.path.join(DATA_LOCATION,"GBPUSD1d.txt"),
                                                           delimiter= ',',
                                                           converters={0:convert_date})
 
+# Starting Part -6
+patternAr     = []
+performanceAr = []
+
+
+
+
 
 def percentChange(startPoint, currentPoint):
     # Import either the division or using float such as (float()) this part of python
-    return (float(currentPoint - startPoint) / startPoint) * 100
+    return (float(currentPoint - startPoint) / abs(startPoint)) * 100
 
 
 
-def patternFinder():
+def patternStorage():
+    patStartTime = time.time()
     avgLine = ((bid + ask) /2)
     x = len(avgLine) - 30 # it will stop at the 30th
 
@@ -55,13 +65,27 @@ def patternFinder():
 
         outcomeRange = avgLine[y+20:y+30]
         currentPoint = avgLine[y]
-        from functools import reduce
-        print(reduce(lambda x , y : x+y, outcomeRange)/len(outcomeRange))
+
+        try:
+            averageOutcome  = reduce(lambda x , y : x+y, outcomeRange)/len(outcomeRange)
+        except Exception as e:
+            print(str(e))
+            averageOutcome = 0
+
+        futureOutcome = percentChange(currentPoint, averageOutcome)
+
+
+
+
+
+
+
         print(currentPoint)
         print('-----------')
         print(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
         y += 1
-        time.sleep(1)
+        #time.sleep(1)
+    PatEndTime = time.time()
 
 
 def graphRaxFx():
@@ -142,10 +166,11 @@ def See_the_dataset():
 
 # Starting point for our Python Script
 if __name__ == "__main__":
-    output1 = session_info("Finding Patterns: Machine Learning for Automated Trading in Forex and Stocks Part 5")
+    output1 = session_info(message)
     output1.Initial_run()
     #graphRaxFx()
-    patternFinder()
+    #patternFinder()
+    patternStorage()
     output1.Finishing_run()
 
 
