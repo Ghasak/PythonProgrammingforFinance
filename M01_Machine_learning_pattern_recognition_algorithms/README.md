@@ -104,5 +104,17 @@ print(reduce(do_sum, [1, 2, 3, 4]))
 
 ## P06_Pattern Finding and Storing: Machine Learning for Algorithmic Trading in Forex and Stocks Part 6
 
-We will save our work here and add more functionality.
+We will save our work here and add more functionality. As we proceed, the value that we have expected in our current script shows pattern is a list of the ticks from 1 to 10 added to the global array.
+
+```py
+The length of patternAr     = 61971
+The length of performanceAr = 61971
+Pattern storage took:1.4507629871368408 second
+================================================================================================
+Pattern Finding and Storing: Machine Learning for Algorithmic Trading in Forex and Stocks Part 6
+================================================================================================
+Starting  time at = 21/08/2019 00:58:50
+Executing time at = 21/08/2019 00:58:51
+[Done] exited with code = 0 in 0:00:01.450952 seconds
+```
 
