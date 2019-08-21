@@ -178,15 +178,24 @@ messagex = "This is the sentence that I want to make it in two lines"
 def MyString(messagex):
     lenString = len(messagex)
     messageList = list(messagex)
-    messagewords = messagex.split()
+    messagewords = messagex.split(' ')
     # print(lenString)
     # print(messageList)
     # print(messagewords)
     # Define your boundary
-    boundary = 50
+    boundary = 10
+    lineList = []
     l = 0
     i = 0
-    
+    while i < len(messagewords):
+        lineList.append(messagewords[i])
+        if len(lineList)< boundary:
+            print(messagewords[i],end = " ")
+            i = i+1
+        else:
+            lineList = []
+            i = i +1
+
 
 
 
