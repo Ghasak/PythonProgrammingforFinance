@@ -39,7 +39,7 @@ class session_info():
             commands and functions in python.
         """
         #N_spaces = message.count(' ') # From both sides
-        banner = 40
+        banner = 80
         words = [self.your_string]
         word_sum = sum(len(i) for i in words)
         margin1 = int(banner/5)*"="

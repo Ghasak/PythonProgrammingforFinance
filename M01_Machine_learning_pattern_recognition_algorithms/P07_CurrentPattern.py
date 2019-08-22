@@ -134,11 +134,11 @@ def See_the_dataset():
 
 # Starting point for our Python Script
 if __name__ == "__main__":
-    #output1 = session_info(messagex)
-    #output1.Initial_run()
-    #output1.add_line()
+    output1 = session_info(messagex)
+    output1.Initial_run()
+    output1.add_line()
     #graphRaxFx()
     #patternFinder()
     #patternStorage()
-    #output1.Finishing_run()
+    output1.Finishing_run()
     print("Main()")
