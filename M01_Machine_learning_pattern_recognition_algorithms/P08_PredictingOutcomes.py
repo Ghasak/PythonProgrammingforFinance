@@ -2,7 +2,7 @@
     Machine learning with finance - Pattern Recognition for
         Algorithmic Forex and Stock Trading: Finding Patterns: Pattern Finding and Storing:
 """
-messagex = "Current Pattern: Machine Learning for Algorithmic Trading in Forex and Stocks Part 7"
+messagex = "Predicting outcomes with Pattern Recognition: Machine Learning for Algorithmic Trading p. 8"
 
 import os
 import sys
@@ -43,11 +43,22 @@ avgLine = ((bid + ask) /2)
 # Starting Part -6
 patternAr     = []
 performanceAr = []
+patForRec = []
 
-def percentChange(startPoint, currentPoint):
-    # Import either the division or using float such as (float()) this part of python
-    return ((float(currentPoint)-startPoint)/abs(startPoint))*100
+# def percentChange(startPoint, currentPoint):
+#     # Import either the division or using float such as (float()) this part of python
+#     return ((float(currentPoint)-startPoint)/abs(startPoint))*100
 
+#@Antonio Constandinou @Luis Teixeira Antonio, I am sorry for the delay! Next time poke at me some more!- Comments from Sentdex.Both of you should try changing your percent change function to:
+def percentChange(startPoint,currentPoint):
+    try:
+        x = ((float(currentPoint)-startPoint)/abs(startPoint))*100.00
+        if x == 0.0:
+            return 0.000000001
+        else:
+            return x
+    except:
+        return 0.0001
 
 
 def patternStorage():
@@ -104,9 +115,7 @@ def patternStorage():
     print(f"Pattern storage took:{patEndTime-patStartTime} second")
 
 
-def patternRecognition():
-    patForRec = []
-
+def currentPattern():
     cp1  = percentChange(avgLine[-11], avgLine[-10])
     cp2  = percentChange(avgLine[-11], avgLine[-9])
     cp3  = percentChange(avgLine[-11], avgLine[-8])
@@ -129,8 +138,41 @@ def patternRecognition():
     patForRec.append(cp9)
     patForRec.append(cp10)
 
-    print(patForRec)
+    #print(patForRec)
 
+
+# Starting with Part 7
+
+def patternRecognition():
+
+    for eachPattern in patternAr:
+        sim1  = 100.00 - abs(percentChange(eachPattern[0], patForRec[0]))
+        sim2  = 100.00 - abs(percentChange(eachPattern[1], patForRec[1]))
+        sim3  = 100.00 - abs(percentChange(eachPattern[2], patForRec[2]))
+        sim4  = 100.00 - abs(percentChange(eachPattern[3], patForRec[3]))
+        sim5  = 100.00 - abs(percentChange(eachPattern[4], patForRec[4]))
+        sim6  = 100.00 - abs(percentChange(eachPattern[5], patForRec[5]))
+        sim7  = 100.00 - abs(percentChange(eachPattern[6], patForRec[6]))
+        sim8  = 100.00 - abs(percentChange(eachPattern[7], patForRec[7]))
+        sim9  = 100.00 - abs(percentChange(eachPattern[8], patForRec[8]))
+        sim10 = 100.00 - abs(percentChange(eachPattern[9], patForRec[9]))
+
+        print(sim1, sim2,sim3,sim4)
+        howSim = (sim1+sim2+sim3+sim4+sim5+sim6+sim7+sim8+sim9+sim10)/100.00
+
+        if howSim > 99:
+            patdex = patternAr.index(eachPattern)
+
+            print(50 * "#")
+            print(50 * "#")
+            print(patForRec)
+            print(50 * "=")
+            print(50 * "=")
+            print(eachPattern)
+            print(50 * "-")
+            print(f"Predicted outcome = {performanceAr[patdex]}")
+            print(50 * "#")
+            print(50 * "#")
 
 
 def graphRaxFx():
@@ -170,7 +212,11 @@ if __name__ == "__main__":
     #output1.add_line()
     #graphRaxFx()
     #patternFinder()
-    #patternStorage()
+    totalStart = time.time()
+    patternStorage()
+    currentPattern()
     patternRecognition()
+    totalTime = time.time()-totalStart
+    print(f"Entir processing time took: {totalTime} second")
     output1.Finishing_run()
-    print("Main()")
+

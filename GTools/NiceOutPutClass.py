@@ -20,6 +20,8 @@ class session_info():
         print(self.len_string_adding*"-")
         print("Today's date:", session_info.T0.strftime("%d/%m/%Y %H:%M:%S"))
         print(self.len_string_adding*"-")
+        session_info.add_line(self)
+
 
     # This method for showing finishing running - time
     def Finishing_run(self):
@@ -28,7 +30,8 @@ class session_info():
         TPassed = Tx - session_info.T0
         # print(self.len_string*"=")
         # print(self.your_string)
-        # print(self.len_string*"=")
+        session_info.add_line(self)
+
         print("Starting  time at = {}".format(self.T0.strftime("%d/%m/%Y %H:%M:%S")))
         print("Executing time at = {}".format(Tx.strftime("%d/%m/%Y %H:%M:%S")))
         print(f"[Done] exited with code = 0 in {TPassed} seconds")
@@ -39,7 +42,7 @@ class session_info():
             commands and functions in python.
         """
         #N_spaces = message.count(' ') # From both sides
-        banner = 80
+        banner = 60
         words = [self.your_string]
         word_sum = sum(len(i) for i in words)
         margin1 = int(banner/5)*"="
@@ -61,7 +64,7 @@ class session_info():
             """
             print(banner*"=")
             wordsx = self.your_string.split()
-            xr = 4 # alignment added later (adjusted manually)
+            xr = 5 # alignment added later (adjusted manually)
             i = 0
             spacex = 0
             listwords = []

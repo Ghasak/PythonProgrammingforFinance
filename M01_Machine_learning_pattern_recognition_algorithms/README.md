@@ -118,3 +118,10 @@ Executing time at = 21/08/2019 00:58:51
 [Done] exited with code = 0 in 0:00:01.450952 seconds
 ```
 
+## P07_Current Pattern: Machine Learning for Algorithmic Trading in Forex and Stocks
+We will start the current pattern recognition.
+we have added the function called patternRecognition thats all.
+
+## P08_Predicting outcomes with Pattern Recognition: Machine Learning for Algorithmic Trading p. 8
+Here we will add the following:
+
